@@ -1,10 +1,7 @@
 package com.example.bcalc.calc;
 
 import com.example.bcalc.calc.dtos.DoMathRequest;
-import com.example.bcalc.calc.dtos.DoMathResponse;
 import org.json.JSONException;
-import org.json.JSONObject;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.skyscreamer.jsonassert.JSONAssert;
@@ -30,7 +27,7 @@ public class CalcControllerIntegrationTests {
         DoMathRequest doMathRequest = new DoMathRequest(2, 2, "+");
         HttpEntity<DoMathRequest> request = new HttpEntity<>(doMathRequest, headers);
         String response = this.restTemplate.postForObject("/doMath", request, String.class);
-        System.out.println(response);
+        JSONAssert.assertEquals("{\"calcResponse\":4.0}", response, false);
     }
 
 }
